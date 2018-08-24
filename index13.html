@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Order approved</title>
+        <link rel="stylesheet" href="css/style.css">
+        <style type="text/css">
+            .menu-header:before {
+                content: '▶';
+                display: inline-block;
+                padding-right: 5px;
+            }
+            .header-open:before {
+                content: '▼';
+                display: inline-block;
+                padding-right: 5px;
+            }
+            .menu-list-closed {
+                display: none;
+            }
+            .menu-list {
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="menu">
+            <h3 class="menu-header">Сладости (нажми меня)!</h3>
+            <ul class="menu-list-closed">
+                <li>Торт</li>
+                <li>Пончик</li>
+                <li>Пирожное</li>
+            </ul>
+        </div>
+            
+        <script>
+            var header = document.querySelector('.menu-header');
+            header.onclick = function() {
+                document.querySelector('.menu-list-closed').classList.toggle('menu-list');
+                header.classList.toggle('header-open');
+            }    
+
+        </script>
+
+    </body>
+</html>            

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Раскрывающееся дерево</title>
+        <link rel="stylesheet" href="css/style.css">
+        <style type="text/css">
+          
+        </style>
+
+    </head>
+    <body>
+        <ul class="tree">
+            <li>Животные
+                <ul>
+                    <li>Млекопитающие
+                        <ul>
+                            <li>Коровы</li>
+                            <li>Ослы</li>
+                            <li>Собаки</li>
+                            <li>Тигры</li>
+                        </ul>
+                    </li>
+                    <li>Другие
+                        <ul>
+                            <li>Змеи</li>
+                            <li>Птицы</li>
+                            <li>Ящерицы</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>Рыбы
+                <ul>
+                    <li>Аквариумные
+                        <ul>
+                            <li>Гуппи</li>
+                            <li>Скалярии</li>
+                        </ul>
+                    </li>
+                    <li>Морские
+                        <ul>
+                            <li>Морская форель</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <script type="text/javascript">
+            var wrapper = document.getElementsByTagName('ul')[0];
+            var li = wrapper.getElementsByTagName('li');
+            console.log(li);
+            for (var i = 0; i < li.length; i++) {
+                var lis = li[i];
+                console.log(lis);
+
+                var span = document.createElement('span');
+                lis.insertBefore(span, lis.firstChild);
+                span.appendChild(span.nextSibling); 
+
+                
+            }
+            wrapper.onclick = function(event) {
+                var target = event.target;
+                if (target.tagName != 'SPAN') return;
+                var containerChildren = target.parentNode.getElementsByTagName('ul').firstChild;
+
+                if (!containerChildren) return;
+                containerChildren.hidden = !containerChildren.hidden;
+            }
+            
+        
+        </script>
+    </body>
+</html>            

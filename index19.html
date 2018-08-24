@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Order approved</title>
+        <link rel="stylesheet" href="css/style.css">
+        <style type="text/css"></style>
+    </head>
+    <body>
+
+        <script type="text/javascript">
+            function makeArmy() {
+
+                var shooters = [];
+
+                for (var i = 0; i < 10; i++) {
+                    (function (i) {
+                        var shooter = function() { // функция-стрелок
+                            alert( i ); // выводит свой номер
+                        };
+                        shooters.push(shooter);
+                    })(i);    
+                }
+
+                return shooters;
+            }
+
+            var army = makeArmy();
+
+            army[0](); // стрелок выводит 10, а должен 0
+            army[5](); // стрелок выводит 10...
+            // .. все стрелки выводят 10 вместо 0,1,2...9
+
+        </script>
+    </body>
+</html>            

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Order approved</title>
+        <link rel="stylesheet" href="css/style.css">
+        <style type="text/css"></style>
+    </head>
+    <body>
+
+        <script type="text/javascript">
+            function applyAll(func) {
+                return func.apply(this, [].slice.call(arguments, 1));
+            }
+
+            // Применить Math.max к аргументам 2, -2, 3
+            alert( applyAll(Math.max, 2, -2, 3) ); // 3
+
+            // Применить Math.min к аргументам 2, -2, 3
+            alert( applyAll(Math.min, 2, -2, 3) ); // -2
+
+
+            function sum() { // суммирует аргументы: sum(1,2,3) = 6
+                return [].reduce.call(arguments, function(a, b) {
+                    return a + b;
+                });
+            }
+
+            function mul() { // перемножает аргументы: mul(2,3,4) = 24
+                return [].reduce.call(arguments, function(a, b) {
+                    return a * b;
+                });
+            }
+
+            alert( applyAll(sum, 1, 2, 3) ); // -> sum(1, 2, 3) = 6
+            alert( applyAll(mul, 2, 3, 4) ); // -> mul(2, 3, 4) = 24
+
+
+        </script>
+    </body>
+</html>            

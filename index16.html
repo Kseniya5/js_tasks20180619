@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Order approved</title>
+        <link rel="stylesheet" href="css/style.css">
+        <style type="text/css"></style>
+    </head>
+    <body>
+
+        <script type="text/javascript">
+
+            function makeBuffer() {
+                var sum = "";
+                function buffer(value) {
+                    return (typeof value !== "undefined") ? (sum += value) : sum;
+                }
+                buffer.clear = function() {
+                    sum = "";
+                };
+                return buffer;
+            }
+
+            var buffer = makeBuffer();
+
+            buffer("Тест");
+            buffer(" тебя не съест ");
+            alert( buffer() ); // Тест тебя не съест
+
+            buffer.clear();
+
+            alert( buffer() ); // ""
+        </script>
+    </body>
+</html>            

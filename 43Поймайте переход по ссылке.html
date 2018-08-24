@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Поймайте переход по ссылке</title>
+        <link rel="stylesheet" href="css/style.css">
+        <style type="text/css">
+            #contents {
+                padding: 5px;
+                border: 1px green solid;
+            }
+        </style>
+
+    </head>
+    <body>
+        <fieldset id="contents">
+            <legend>#contents</legend>
+            <p>
+            Как насчет почитать <a href="http://wikipedia.org" onclick="onclick(event)">Википедию</a>, или посетить <a href="http://w3.org" onclick="onclick(event)"><i>W3.org</i></a> и узнать про современные стандарты?
+            </p>
+        </fieldset>
+
+        <script type="text/javascript">
+            var container = document.getElementById('contents');
+            console.log(container);
+
+            container.onclick = function(event) {
+                var target = event.target;
+
+                function link(href) {
+                    var question = confirm('Хотите покинуть страницу ' + href);
+                    if (!question) return false;
+                }
+
+                while(target != this) {
+                    if (target.nodeName == "A") {
+                        return link(target.getAttribute('href'));
+                    } 
+                    target = target.parentNode;   
+                }
+                     
+            };
+                                   
+        </script>
+    </body>
+</html>            

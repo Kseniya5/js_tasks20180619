@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Order approved</title>
+        <link rel="stylesheet" href="css/style.css">
+        <style type="text/css"></style>
+    </head>
+    <body>
+
+        <script type="text/javascript">
+            var calculator = {
+                read: function() {
+                    this.a = +(prompt('enter a', ''));
+                    this.b = +(prompt("enter b", ''));
+                },
+                sum: function() {
+                    return this.a + this.b;
+                },
+                mul: function() {
+                    return this.a * this.b;
+                }
+            }
+
+            calculator.read();
+            alert( calculator.sum() );
+            alert( calculator.mul() );
+
+        </script>
+    </body>
+</html>            

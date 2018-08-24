@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Order approved</title>
+        <link rel="stylesheet" href="css/style.css">
+        <style type="text/css"></style>
+    </head>
+    <body>
+
+        <script type="text/javascript">
+
+            function makeBuffer() {
+                var sum = "";
+                return function(value) {
+                    return (typeof value !== "undefined") ? (sum += value) : sum;
+                } 
+            }
+
+            var buffer = makeBuffer();
+
+            // добавить значения к буферу
+            buffer('Замыкания');
+            buffer(' Использовать');
+            buffer(' Нужно!');
+
+            // получить текущее значение
+            alert( buffer() ); // Замыкания Использовать Нужно!
+
+            var buffer2 = makeBuffer();
+            buffer2(0);
+            buffer2(1);
+            buffer2(0);
+
+            alert( buffer2() ); // '010'
+        </script>
+    </body>
+</html>            

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Order approved</title>
+        <link rel="stylesheet" href="css/style.css">
+        <style type="text/css"></style>
+    </head>
+    <body>
+
+        <script type="text/javascript">
+            function f(x) {
+                return Math.random() * x; // random для удобства тестирования
+            }
+
+            function makeCaching(f) {
+                var cash = {}; 
+                return function wrapper(x) {
+                    if (!(x in cash)) {
+                        cash[x] = f.call(this, x);
+                    }    
+                return cash[x]; 
+                }
+                
+            }
+
+            f = makeCaching(f);
+
+            var a, b;
+
+            a = f(1);
+            b = f(1);
+            alert( a == b ); // true (значение закешировано)
+
+            b = f(2);
+            alert( a == b ); // false, другой аргумент => другое значение
+
+        </script>
+    </body>
+</html>            

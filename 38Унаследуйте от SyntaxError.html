@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Унаследуйте от SyntaxError</title>
+        <link rel="stylesheet" href="css/style.css">
+        <style type="text/css"></style>
+    </head>
+    <body>
+
+        <script type="text/javascript">  
+            
+            function SyntaxError (message) {
+                this.name = 'SyntaxError';
+                this.message  = message;
+                if (Error.captureStackTrace) {
+                    Error.captureStackTrace(this, this.constructor);
+                } else {
+                    this.stack = (new Error()).stack;
+                }
+            }
+            SyntaxError.prototype = Object.create(Error.prototype);
+            SyntaxError.prototype.constructor = SyntaxError;
+
+            function FormatError (property) {
+                SyntaxError.apply(this, arguments);
+                this.name = 'FormatError';
+            }
+            FormatError.prototype = Object.create(SyntaxError.prototype);
+            FormatError.prototype.constructor = FormatError;
+
+
+
+
+
+
+            var err = new FormatError("ошибка форматирования");
+
+            alert( err.message ); // ошибка форматирования
+            alert( err.name ); // FormatError
+            alert( err.stack ); // стек на момент генерации ошибки
+
+            alert( err instanceof SyntaxError ); // true
+
+
+        </script>
+    </body>
+</html>            

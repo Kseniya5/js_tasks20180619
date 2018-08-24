@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Order approved</title>
+        <link rel="stylesheet" href="css/style.css">
+        
+    </head>
+    <body>
+        <table>
+            <tr>
+                <td></td>
+                <td>ff</td>
+                <td>bb</td>
+                <td>59</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>ii</td>
+                <td>jj</td>
+                <td>30</td>
+            </tr> 
+            <tr>
+                <td></td>
+                <td>ii</td>
+                <td>jj</td>
+                <td>44</td>
+            </tr>    
+        </table>
+        Как бы вы предложили отсортировать содержимое таблицы по полю Возраст
+        <script>
+            
+
+            var table = document.body.querySelector('table');
+            function compareNumeric(a, b) {
+                if (a.cells[3].innerHTML > b.cells[3].innerHTML) return 1;
+                if (a.cells[3].innerHTML < b.cells[3].innerHTML) return -1;
+            }
+            var newTableRows = [].slice.call(table.rows).sort(compareNumeric);
+            console.log(newTableRows);
+            table.innerHTML = '';
+            for (var i = 0; i < newTableRows.length; i++) {
+                table.appendChild( newTableRows[i] );
+            }
+            
+        </script>
+    </body>
+</html>            

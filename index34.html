@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Order approved</title>
+        <link rel="stylesheet" href="css/style.css">
+        <style type="text/css"></style>
+    </head>
+    <body>
+
+        <script type="text/javascript">  
+
+            function CoffeeMachine(power) {
+                this._waterAmount = 0;
+                this.WATER_HEAT_CAPACITY = 4200;
+                this._power = power;
+            }
+
+            CoffeeMachine.prototype.getTimeToBoil = function () {
+                    return this._waterAmount * this.WATER_HEAT_CAPACITY * 80 / this._power;
+                }  
+            CoffeeMachine.prototype.run = function() {
+                setTimeout(function() {
+                    alert( 'Кофе готов!' );
+                }, this.getTimeToBoil());
+            };
+
+            CoffeeMachine.prototype.setWaterAmount = function(amount) {
+                this._waterAmount = amount;
+            };
+
+
+            var coffeeMachine = new CoffeeMachine(10000);
+            coffeeMachine.setWaterAmount(50);
+            coffeeMachine.run();
+        </script>
+    </body>
+</html>            

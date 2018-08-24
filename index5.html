@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Order approved</title>
+        <link rel="stylesheet" href="css/style.css">
+        
+    </head>
+    <body>
+       <table id="table">
+            <tr>
+                <td>Это</td>
+                <td>Все</td>
+                <td>Элементы DOM</td>
+            </tr>
+        </table>
+
+        <ol id="ol">
+            <li>Вася</li>
+            <li>Петя</li>
+            <li>Маша</li>
+            <li>Даша</li>
+        </ol>
+
+        <script>
+            var data = {
+              "Рыбы": {
+                "Форель": {},
+                "Щука": {}
+              },
+
+              "Деревья": {
+                "Хвойные": {
+                  "Лиственница": {},
+                  "Ель": {}
+                },
+                "Цветковые": {
+                  "Берёза": {},
+                  "Тополь": {}
+                }
+              }
+            };
+            var container = document.getElementById('container');
+            createTree(container, data); // создаёт
+        </script>
+    </body>
+</html>            

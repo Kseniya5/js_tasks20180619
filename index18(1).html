@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Order approved</title>
+        <link rel="stylesheet" href="css/style.css">
+        <style type="text/css"></style>
+    </head>
+    <body>
+
+        <script type="text/javascript">
+            function filter(arr, func) {
+
+            }
+    
+            function inBetween(a, b) {
+                for (var i = 0; i < arr.length; i++) {
+                    return function(a, b) {
+                        for (i = a; i < b; i++) {
+                            return arr[i];
+                        }
+                    }        
+                }
+            }
+    
+            function inArray(arr) {
+    
+            }
+
+
+            var arr = [1, 2, 3, 4, 5, 6, 7];
+
+            alert(filter(arr, function(a) {
+                return a % 2 == 0
+            })); // 2,4,6
+
+            alert( filter(arr, inBetween(3, 6)) ); // 3,4,5,6
+
+            alert( filter(arr, inArray([1, 2, 10])) ); // 1,2
+
+        </script>
+    </body>
+</html>            

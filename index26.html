@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Order approved</title>
+        <link rel="stylesheet" href="css/style.css">
+        <style type="text/css"></style>
+    </head>
+    <body>
+
+        <script type="text/javascript">
+            "use strict";
+
+            function ask(question, answer, ok, fail) {
+                var result = prompt(question, '');
+                if (result.toLowerCase() == answer.toLowerCase()) ok();
+                else fail();
+            }
+
+            var user = {
+                login: 'Василий',
+                password: '12345',
+
+                // метод для вызова из ask
+                loginDone: function(result) {
+                    alert( this.login + (result ? ' вошёл в сайт' : ' ошибка входа') );
+                },
+
+                checkPassword: function() {
+                    var self = this;
+                    ask("Ваш пароль?", this.password,
+                        function () {
+                            self.loginDone(true);
+                        },
+                        function () {
+                            self.loginDone(false);
+                        }
+                    );  
+                }
+            };
+
+            var vasya = user;
+            user = null;
+            vasya.checkPassword();
+
+        </script>
+    </body>
+</html>            
