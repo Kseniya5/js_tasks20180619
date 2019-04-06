@@ -37,6 +37,14 @@
                 margin: 2px;
                 float: left;
             }
+            ul {
+                margin-left: 0;
+                padding-left: 0;
+            }
+            li {
+                list-style-type: none;
+                display: inline-block;
+            }
 
             #thumbs a:hover {
                 border-color: #FF9900;
@@ -47,27 +55,44 @@
     <body>
         <p><img id="largeImg" src="https://js.cx/gallery/img1-lg.jpg" alt="Large image"></p>
 
-        <div id="thumbs">
+        <ul id="thumbs">
             <!-- При наведении на изображение показывается встроенная подсказка браузера (title) -->
-            <a href="https://js.cx/gallery/img2-lg.jpg" title="Image 2"><img src="https://js.cx/gallery/img2-thumb.jpg"></a>
-            <a href="https://js.cx/gallery/img3-lg.jpg" title="Image 3"><img src="https://js.cx/gallery/img3-thumb.jpg"></a>
-            <a href="https://js.cx/gallery/img4-lg.jpg" title="Image 4"><img src="https://js.cx/gallery/img4-thumb.jpg"></a>
-            <a href="https://js.cx/gallery/img5-lg.jpg" title="Image 5"><img src="https://js.cx/gallery/img5-thumb.jpg"></a>
-            <a href="https://js.cx/gallery/img6-lg.jpg" title="Image 6"><img src="https://js.cx/gallery/img6-thumb.jpg"></a>
-        </div>
+            <li><a href="https://js.cx/gallery/img2-lg.jpg" title="Image 2"><img src="https://js.cx/gallery/img2-thumb.jpg"></a></li>
+            <li><a href="https://js.cx/gallery/img3-lg.jpg" title="Image 3"><img src="https://js.cx/gallery/img3-thumb.jpg"></a></li>
+            <li><a href="https://js.cx/gallery/img4-lg.jpg" title="Image 4"><img src="https://js.cx/gallery/img4-thumb.jpg"></a></li>
+            <li><a href="https://js.cx/gallery/img5-lg.jpg" title="Image 5"><img src="https://js.cx/gallery/img5-thumb.jpg"></a></li>
+            <li><a href="https://js.cx/gallery/img6-lg.jpg" title="Image 6"><img src="https://js.cx/gallery/img6-thumb.jpg"></a></li>
+        </ul>
 
         <script type="text/javascript">
-            var slider = document.getElementById('thumbs');
-            console.log(slider);
+            var container = document.getElementById('thumbs');
+            var largeImg = document.getElementById('largeImg'); 
+            console.log(largeImg);
 
-            slider.onclick = function(event) {
+            container.onclick = function(event) {
                 var target = event.target;
-                var 
-                while(target.nodeName == "A" || 'IMG') {
-                        return ;
-                    }                      
-            };
-                                   
+                while(target != this) {
+                    if (target.nodeName == 'A') {
+                        showSlide(target.href, target.title);
+                        return false;
+                    } 
+                    target = target.parentNode;
+                }                
+            }
+
+            function showSlide(href, title) {
+                largeImg.src = href;
+                largeImg.alt = title;
+            }
+
+            var imgs = container.getElementsByTagName('img');
+            for (var i = 0; i < imgs.length; i++) {
+                url = imgs[i].parentNode.href;
+
+                var img = document.createElement('img');
+                img.src = url;
+            }
+
         </script>
     </body>
 </html>            

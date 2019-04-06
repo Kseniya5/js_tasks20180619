@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Поведение "подсказка"</title>
+        <link rel="stylesheet" href="css/style.css">
+        <style type="text/css">
+            body {
+                height: 2000px;
+                }
+            .new-message {
+                position: fixed;
+                display: inline-block;
+                padding: 20px;
+                border-radius: 5px;
+                font-style: italic;
+                border: 1px solid grey;
+                background-color: white;
+            }
+            .wrapper-button {
+                position: relative;
+                display: inline-block;
+            }
+        </style>
+
+    </head>
+    <body>
+        <p>ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя</p>
+        <p>ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя</p>
+        <div class="wrapper-button">
+            <button data-tooltip="подсказка длиннее, чем элемент">Короткая кнопка</button>
+        </div>
+        <div class="wrapper-button">    
+            <button data-tooltip="HTML<br>подсказка">Ещё кнопка</button>
+        </div>
+        <p>Прокрутите страницу, чтобы ссылки были вверху и проверьте, правильно ли показываются подсказки.</p>
+
+        <script type="text/javascript">
+
+			var newElem;
+
+            document.onmouseover = function(event) {
+                var target = event.target;
+                target.style.position = 'relative';
+                var id = target.getAttribute('data-tooltip');
+                if(!id) return;
+                
+                var elem = document.createElement('div');      
+                elem.innerHTML = id;
+                elem.className ='new-message';
+                document.body.appendChild(elem);
+
+                var coords = target.getBoundingClientRect();
+                var left = coords.left + (target.offsetWidth - elem.offsetWidth) / 2;
+      			if (left < 0) left = 0; // не вылезать за левую границу окна
+
+      			var top = coords.top - elem.offsetHeight - 5;
+      			if (top < 0) { // не вылезать за верхнюю границу окна
+        			top = coords.top + target.offsetHeight + 5;
+      			}
+
+      			elem.style.left = left + 'px';
+      			elem.style.top = top + 'px';
+
+
+
+                newElem = elem;
+                     
+            };
+
+            document.onmouseout = function(event) {
+                if(newElem) {
+                    document.body.removeChild(newElem);;
+                    newElem = null;
+                }    
+            };    
+      
+        </script>
+    </body>
+</html>            

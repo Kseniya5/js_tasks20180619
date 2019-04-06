@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+  <html>
+
+    <head>
+      <meta charset="UTF-8">
+      <style>
+        /* стиль для input с плейсхолдером */
+
+        .placeholder {
+          color: blue;
+          font-family: serif;
+        }
+        /* стиль для подсказки над элементом (вместо плейсхолдера при фокусировке) */
+
+        .placeholder-tooltip {
+          color: blue;
+          font-family: serif;
+          position: fixed;
+        }
+      </style>
+    </head>
+
+    <body>
+
+      <p>Красивый placeholder:</p>
+
+      <input type="email" data-placeholder="E-mail">
+
+
+      <script>
+        var input = document.querySelector('[data-placeholder]');
+
+        showPlaceholder(input);
+
+        // Показать placeholder внутри input
+        // Также можно сделать это при помощи вёрстки, отдельным элементом
+        function showPlaceholder(input) {
+          input.classList.add('placeholder');
+          input.value = input.dataset.placeholder;
+        }
+
+        // ...ваш код для input...
+        function showTooltip(input) {
+          var elem = document.createElement('div');
+          elem.classList.add('placeholder-tooltip');
+          elem.innerHTML = input.dataset.placeholder;
+          elem.style.left = input.getBoundingClientRect().left + 'px';
+          document.body.appendChild(elem);
+          elem.style.top = input.getBoundingClientRect().top - elem.offsetHeight - 4 + 'px';
+          input.elem = elem;
+        }
+
+        input.onfocus = function() {
+          if (input.className == 'placeholder') {
+            input.className = '';
+            input.value = '';
+          } 
+          
+          showTooltip(input);
+        };
+        
+        input.onblur = function() {
+          document.body.removeChild(input.elem);
+          delete input.elem;
+
+          // показываем placeholder обратно, если input пуст
+          if (input.value == '') {
+            showPlaceholder(input);
+          }  
+        };  
+      </script>
+
+
+    </body>
+
+  </html>

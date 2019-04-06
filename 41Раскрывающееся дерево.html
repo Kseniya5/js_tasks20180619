@@ -6,7 +6,9 @@
         <title>Раскрывающееся дерево</title>
         <link rel="stylesheet" href="css/style.css">
         <style type="text/css">
-          
+        	.tree span:hover {
+        		font-weight: bold;
+        	}  
         </style>
 
     </head>
@@ -49,6 +51,7 @@
         </ul>
         <script type="text/javascript">
             var wrapper = document.getElementsByTagName('ul')[0];
+            console.log(wrapper);
             var li = wrapper.getElementsByTagName('li');
             console.log(li);
             for (var i = 0; i < li.length; i++) {
@@ -63,12 +66,15 @@
             }
             wrapper.onclick = function(event) {
                 var target = event.target;
-                if (target.tagName != 'SPAN') return;
-                var containerChildren = target.parentNode.getElementsByTagName('ul').firstChild;
+                if (target.tagName != 'SPAN') {
+                	return;
+                }	
+                var containerChildren = target.parentNode.getElementsByTagName('ul')[0];
 
                 if (!containerChildren) return;
                 containerChildren.hidden = !containerChildren.hidden;
             }
+
             
         
         </script>

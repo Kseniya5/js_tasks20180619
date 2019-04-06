@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+  <html>
+
+    <head>
+      <meta charset="utf-8">
+      <script src="https://cdn.polyfill.io/v1/polyfill.js?features=Element.prototype.closest"></script>
+      <style>
+        .voter {
+          font-family: 'DejaVu Sans Mono', 'Lucida Console', 'Menlo', 'Monaco', monospace;
+          font-size: 18px;
+        }
+
+        .up,
+        .down {
+          cursor: pointer;
+          color: blue;
+          font-weight: bold;
+        }
+      </style>
+    </head>
+
+    <body>
+
+      <div id="voter" class="voter">
+        <span class="down">—</span>
+        <span class="vote">0</span>
+        <span class="up">+</span>
+      </div>
+
+      <script>
+        function Voter(options) {
+          // ... ваш код
+          var elem = this._elem = options.elem;
+
+          this._voteElem = elem.querySelector('.vote');
+
+          elem.onmousedown = function() {
+            return false;
+          }
+
+          elem.onclick = this._onClick.bind(this);
+        }   
+
+        Voter.prototype._onClick =  function (event) {
+
+          if (event.target.closest('.down')) {
+            this._voteDecrease();
+          } else if (event.target.closest('.up')) {
+            this._voteIncrease();
+          }
+        };  
+          
+
+        Voter.prototype._voteIncrease = function() {
+          this._voteElem.innerHTML = +this._voteElem.innerHTML + 1;                  
+        };
+        Voter.prototype._voteDecrease =  function() {
+          this._voteElem.innerHTML = +this._voteElem.innerHTML - 1;                  
+        };   
+        Voter.prototype.setVote = function(vote) {
+          this._voteElem.innerHTML = +vote;
+        };
+
+
+
+
+        function StepVoter(options) {
+          Voter.apply(this, arguments);
+          this._step = options.step || 1;
+        }
+        StepVoter.prototype = Object.create(Voter.prototype);
+
+        StepVoter.prototype._voteIncrease = function() {
+          this._voteElem.innerHTML = +this._voteElem.innerHTML + this._step;
+        };
+
+        StepVoter.prototype._voteDecrease = function() {
+          this._voteElem.innerHTML = +this._voteElem.innerHTML - this._step;
+        };
+
+        var voter = new StepVoter({
+          elem: document.getElementById('voter'),
+          step: 2
+        });
+
+
+      </script>
+
+    </body>
+
+  </html>

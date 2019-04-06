@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+  	<html>
+    	<head>
+      		<meta charset="utf-8">
+        </head>
+
+    	<body>
+
+			<select>
+  				<option value="Rock">Рок</option>
+  				<option value="Blues" selected>Блюз</option>
+			</select>
+			<script type="text/javascript">
+				var select = document.querySelector('select');
+				var selectedOption = select.options[select.selectedIndex];
+				alert(selectedOption.value + selectedOption.text);
+
+				var option = new Option('Классика', 'Classic', true, true);
+				select.appendChild(option);
+			</script>
+		</body>
+
+  	</html>

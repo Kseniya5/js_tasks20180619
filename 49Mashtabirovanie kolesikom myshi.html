@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style type="text/css">
+    #text {
+      width: 250px;
+      height: auto;
+      border: 1px solid red;
+    }    
+  </style>
+</head>
+
+<body>
+
+  <div id ="text">При прокрутке колёсика мыши над этим элементом, он будет масштабироваться.</div>
+  
+  <script>
+    'use strict';
+    function addOnWheel(elem, onWheel) {
+      if (elem.addEventListener) {
+        if ('onwheel' in document) {
+          // IE9+, FF17+, Ch31+
+          elem.addEventListener("wheel", onWheel);
+        } else if ('onmousewheel' in document) {
+          // устаревший вариант события
+          elem.addEventListener("mousewheel", onWheel);
+        } else {
+          // Firefox < 17
+          elem.addEventListener("MozMousePixelScroll", onWheel);
+        }
+      } else { // IE8-
+        text.attachEvent("onmousewheel", onWheel);
+      }
+    }
+
+    let scale = 1;
+
+    addOnWheel(text, function(event) {
+
+      var delta = event.deltaY || event.detail || e.wheelDelta;
+
+      if(delta > 0) scale += 0.05;
+      else scale -= 0.05;
+
+      text.style.transform = text.style.WebkitTransform = text.style.MsTransform = 'scale( ' + scale + ')';
+
+      event.preventDefault ? e.preventDefault() : (e.returnValue = false);
+    })
+    
+
+  </script>
+</body>
+
+</html>
